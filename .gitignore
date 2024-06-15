@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# default ignored files
+/shelf/
+/workspace.xml
+
+# editor-based HTTP Client requests
+/httpRequests/
+
+# editor files
+*.iml
+.idea/
