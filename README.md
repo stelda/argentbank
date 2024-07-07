@@ -55,6 +55,24 @@ cd api
 npm run populate-db
 ```
 
+Once you run the `populate-db` script, you should have two users in your database:
+
+```bash
+### Tony Stark
+
+- First Name: `Tony`
+- Last Name: `Stark`
+- Email: `tony@stark.com`
+- Password: `password123`
+
+### Steve Rogers
+
+- First Name: `Steve`,
+- Last Name: `Rogers`,
+- Email: `steve@rogers.com`,
+- Password: `password456`
+```
+
 ### 4. Start the API
 
 ```bash

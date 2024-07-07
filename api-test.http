@@ -1,0 +1,16 @@
+### Login User
+POST http://localhost:3001/api/v1/user/login
+Content-Type: application/json
+
+{
+  "email": "tony@stark.com",
+  "password": "password123"
+}
+
+> {%
+client.global.set("auth_token", response.body.body.token);
+%}
+
+### Afficher le Profil Utilisateur avec le token capturé
+GET http://localhost:3001/api/v1/user/profile
+Authorization: Bearer {{auth_token}}
