@@ -13,6 +13,19 @@ const login = createAsyncThunk('auth/login', async (credentials, { rejectWithVal
     }
 });
 
+const getUserProfile = createAsyncThunk('auth/getUserProfile', async (token, { rejectWithValue }) => {
+    try {
+        const response = await axios.get('http://localhost:3001/api/v1/user/profile', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data.body;
+    } catch (error) {
+        return rejectWithValue(error.response.data.message || error.message);
+    }
+});
+
 /**
  * Un slice pour gérer l'état de l'authentification.
  */
@@ -53,10 +66,17 @@ const authSlice = createSlice({
             })
             .addCase(login.rejected, (state, action) => {
                 state.error = action.payload;
+            })
+            .addCase(getUserProfile.fulfilled, (state, action) => {
+                    state.user = action.payload;
+                    state.error = null;
+            })
+            .addCase(getUserProfile.rejected, (state, action) => {
+                state.error = action.payload;
             });
     },
 });
 
-export { login };
+export { login, getUserProfile };
 export const { setAuth, clearAuth } = authSlice.actions;
 export default authSlice.reducer;

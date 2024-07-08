@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/authReducer';
 import { Navigate } from 'react-router-dom';
 
-function Signin() {
+function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Signin() {
     };
 
     if (user) {
-        return <Navigate to="/protected" />;
+        return <Navigate to="/profile" />;
     }
 
     return (
@@ -48,4 +48,4 @@ function Signin() {
     );
 }
 
-export default Signin;
+export default Login;
