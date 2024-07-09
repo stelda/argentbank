@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/authReducer';
+import { login } from '../redux/authThunk';
 import { Navigate } from 'react-router-dom';
 
 function Login() {

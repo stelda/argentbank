@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './authReducer';
+import authReducer from './authSlice';
 
 /**
  * Configure le store Redux avec l'état de l'authentification.

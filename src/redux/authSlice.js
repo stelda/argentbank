@@ -1,33 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
+import { login, getUserProfile, updateUserProfile } from './authThunk';
 
 /**
- * Une fonction asynchrone qui effectue une requête HTTP POST pour se connecter à l'API.
- */
-const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
-    try {
-        const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
-        return response.data.body;
-    } catch (error) {
-        return rejectWithValue(error.response.data.message || error.message);
-    }
-});
-
-const getUserProfile = createAsyncThunk('auth/getUserProfile', async (token, { rejectWithValue }) => {
-    try {
-        const response = await axios.get('http://localhost:3001/api/v1/user/profile', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data.body;
-    } catch (error) {
-        return rejectWithValue(error.response.data.message || error.message);
-    }
-});
-
-/**
- * Un slice pour gérer l'état de l'authentification.
+ * Un reducer qui gère l'authentification de l'utilisateur.
  */
 const authSlice = createSlice({
     name: 'auth',
@@ -77,6 +52,5 @@ const authSlice = createSlice({
     },
 });
 
-export { login, getUserProfile };
 export const { setAuth, clearAuth } = authSlice.actions;
 export default authSlice.reducer;
