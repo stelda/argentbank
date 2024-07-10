@@ -103,7 +103,7 @@ body {
 @media (min-width: 920px) {
   .hero {
     height: 400px;
-    background-position: 0% 33%;
+    background-position: 0 33%;
   }
 
   .hero-content {
@@ -293,6 +293,23 @@ body {
 .main-nav-connexion {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.main-nav-connexion div {
+  margin-right: 10px;
+}
+
+.main-nav-connexion a {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.main-nav-connexion i {
+    padding: 5px;
+    margin: 5px;
 }
 
 .edit-inputs input{
@@ -300,10 +317,10 @@ body {
     margin: 5px;
     font-size: 1.2rem;
     width: 200px;
+    color: grey;
 }
 
 .edit-buttons button {
-  border: 1px solid red;
   padding: 5px;
   margin: 5px;
   width: 100px;
@@ -318,4 +335,12 @@ body {
 .transaction-button-active {
   border-color: #5555ec !important;
   background-color: #5555ec !important;
+}
+
+.main {
+  padding: 0 30px;
+}
+
+.welcome {
+  color: black;
 }

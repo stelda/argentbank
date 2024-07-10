@@ -35,7 +35,7 @@ function Header() {
                               <span>{user.firstName}</span>
                           </div>
                           <Link className="main-nav-item" to="/" onClick={signOut}>
-                              <i className='fa-solid fa-arrow-right-from-bracket'/>
+                              <i className="fa-solid fa-arrow-right-from-bracket"></i>
                               <p> Sign out </p>
                           </Link>
                       </>

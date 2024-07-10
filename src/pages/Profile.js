@@ -28,7 +28,7 @@ function Profile() {
 
     return (
         <main className={`main ${isEditing ? 'bg-light' : 'bg-dark'}`}>
-            <div className="header">
+            <div className={`header ${isEditing ? 'welcome' : ''}`}>
                 {isEditing ? (
                     <EditName
                         onCancel={() => setIsEditing(false)}
