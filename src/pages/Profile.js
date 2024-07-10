@@ -27,7 +27,7 @@ function Profile() {
     }
 
     return (
-        <main className="main bg-dark">
+        <main className={`main ${isEditing ? 'bg-light' : 'bg-dark'}`}>
             <div className="header">
                 {isEditing ? (
                     <EditName
@@ -36,7 +36,7 @@ function Profile() {
                     />
                 ) : (
                     <>
-                        <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
+                        <h1>Welcome back<br/>{user.firstName} {user.lastName}!</h1>
                         <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>
                     </>
                 )}
@@ -49,7 +49,7 @@ function Profile() {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <button className={`transaction-button ${isEditing ? 'transaction-button-active' : ''}`}>View transactions</button>
                 </div>
             </section>
             <section className="account">
@@ -59,17 +59,17 @@ function Profile() {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <button className={`transaction-button ${isEditing ? 'transaction-button-active' : ''}`}>View transactions</button>
                 </div>
             </section>
             <section className="account">
                 <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
+                <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
                     <p className="account-amount">$184.30</p>
                     <p className="account-amount-description">Current Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <button className={`transaction-button ${isEditing ? 'transaction-button-active' : ''}`}>View transactions</button>
                 </div>
             </section>
         </main>

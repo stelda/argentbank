@@ -289,3 +289,33 @@ body {
     width: 200px;
   }
 }
+
+.main-nav-connexion {
+  display: flex;
+  align-items: center;
+}
+
+.edit-inputs input{
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.2rem;
+    width: 200px;
+}
+
+.edit-buttons button {
+  border: 1px solid red;
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  border: #5555ec;
+  color: #5555ec;
+}
+
+.bg-light {
+  background-color: #c4ccd4 !important;
+}
+
+.transaction-button-active {
+  border-color: #5555ec !important;
+  background-color: #5555ec !important;
+}
