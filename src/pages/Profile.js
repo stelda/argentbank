@@ -29,17 +29,21 @@ function Profile() {
     return (
         <main className={`main ${isEditing ? 'bg-light' : 'bg-dark'}`}>
             <div className={`header ${isEditing ? 'welcome' : ''}`}>
-                {isEditing ? (
-                    <EditName
-                        onCancel={() => setIsEditing(false)}
-                        onSave={() => setIsEditing(false)}
-                    />
-                ) : (
-                    <>
-                        <h1>Welcome back<br/>{user.firstName} {user.lastName}!</h1>
-                        <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>
-                    </>
-                )}
+                {isEditing ?
+                    (
+                        <EditName
+                            onCancel={() => setIsEditing(false)}
+                            onSave={() => setIsEditing(false)}
+                        />
+                    )
+                    :
+                    (
+                        <>
+                            <h1>Welcome back<br/>{user.firstName} {user.lastName}!</h1>
+                            <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>
+                        </>
+                    )
+                }
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">

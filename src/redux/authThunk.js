@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = 'http://localhost:3001/api/v1/user';
+
 /**
- * Une action asynchrone qui effectue une requête HTTP POST pour se connecter à l'API.
+ * Une fonction asynchrone qui gère la requête de connexion de l'utilisateur.
  */
 const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
     try {
-        const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
+        const response = await axios.post(`${API_URL}/login`, credentials);
         return response.data.body;
     } catch (error) {
         return rejectWithValue(error.response.data.message || error.message);
@@ -14,11 +16,11 @@ const login = createAsyncThunk('auth/login', async (credentials, { rejectWithVal
 });
 
 /**
- * Une action asynchrone qui récupère le profil de l'utilisateur depuis le serveur.
+ * Une fonction asynchrone qui gère la requête pour obtenir le profil de l'utilisateur.
  */
 const getUserProfile = createAsyncThunk('auth/getUserProfile', async (token, { rejectWithValue }) => {
     try {
-        const response = await axios.get('http://localhost:3001/api/v1/user/profile', {
+        const response = await axios.get(`${API_URL}/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -30,14 +32,14 @@ const getUserProfile = createAsyncThunk('auth/getUserProfile', async (token, { r
 });
 
 /**
- * Une action asynchrone qui met à jour le profil de l'utilisateur.
+ * Une fonction asynchrone qui gère la requête pour mettre à jour le profil de l'utilisateur.
  */
 const updateUserProfile = createAsyncThunk('auth/updateUserProfile', async (profile, { getState, rejectWithValue }) => {
     const state = getState();
     const token = state.auth.token;
 
     try {
-        const response = await axios.put('http://localhost:3001/api/v1/user/profile', profile, {
+        const response = await axios.put(`${API_URL}/profile`, profile, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -1,19 +1,21 @@
 import React from 'react';
 import logo from '../assets/argentBankLogo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearAuth } from '../redux/authSlice';
-import {getUserProfile} from "../redux/authThunk";
 
 
 function Header() {
     const token = useSelector((state) => state.auth.token);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const signOut = () => {
         dispatch(clearAuth());
+        navigate('/login');
     }
 
   return (
@@ -29,22 +31,26 @@ function Header() {
               </Link>
               <div className="main-nav-connexion">
                   {token ?
-                      <>
-                          <div className="main-nav-item">
-                              <i className="fa fa-user-circle"></i>
-                              <span>{user.firstName}</span>
-                          </div>
-                          <Link className="main-nav-item" to="/" onClick={signOut}>
-                              <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                              <p> Sign out </p>
-                          </Link>
-                      </>
-
+                      (
+                          <>
+                              <Link className="main-nav-item" to="/profile">
+                                  <i className="fa fa-user-circle"></i>
+                                  <span>{user.firstName}</span>
+                              </Link>
+                              <Link className="main-nav-item" to="/" onClick={signOut}>
+                                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                                  <p> Sign out </p>
+                              </Link>
+                          </>
+                      )
                       :
-
-                      <Link className="main-nav-item" to="/login">
-                          <span>Sign In</span>
-                      </Link>
+                      (
+                          location.pathname !== '/login' && (
+                              <Link className="main-nav-item" to="/login">
+                                  <span>Sign In</span>
+                              </Link>
+                          )
+                      )
                   }
               </div>
           </nav>
