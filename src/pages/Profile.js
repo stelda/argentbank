@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../redux/authThunk";
 import EditName from "../components/EditName";
 
@@ -10,7 +10,6 @@ function Profile() {
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
-
 
     const accountTypes = ["Checking (x8349)", "Savings (x6712)", "Credit Card (x8349)"];
     const accountBalances = [2082.79, 10928.42, 184.30];

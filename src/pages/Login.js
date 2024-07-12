@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/authThunk';
-import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const dispatch = useDispatch();
     const { user, error } = useSelector((state) => state.auth);
 
@@ -15,7 +17,11 @@ function Login() {
             email: username,
             password: password
         };
-        dispatch(login(credentials));
+        dispatch(login(credentials)).then((action) => {
+            if (action.meta.requestStatus === 'fulfilled' && rememberMe) {
+                Cookies.set('token', action.payload.token, { expires: 7 }); // Cookie expire au bout de 7 jours
+            }
+        });
     };
 
     if (user) {
@@ -37,7 +43,7 @@ function Login() {
                         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" />
+                        <input type="checkbox" id="remember-me" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     {error && <div className="error">{error}</div>}

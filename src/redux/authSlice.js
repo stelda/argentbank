@@ -1,44 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login, getUserProfile, updateUserProfile } from './authThunk';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
-// const tokenFromCookies = Cookies.get('token') || null;
+const tokenFromCookies = Cookies.get('token') || null;
 
-/**
- * Un reducer qui gère l'authentification de l'utilisateur.
- */
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { token: null, user: null, error: null },
-    // initialState: { token: tokenFromCookies, user: null, error: null },
+    initialState: { token: tokenFromCookies, user: null, error: null },
 
     reducers: {
-        /**
-         * Définit le token et les informations de l'utilisateur dans l'état.
-         *
-         * @param {Object} state - L'état actuel.
-         * @param {Object} action - L'action dispatchée contenant le token et les informations de l'utilisateur.
-         */
+
         setAuth: (state, action) => {
             state.token = action.payload.token;
             state.user = action.payload.user;
-            // Cookies.set('token', action.payload.token, { expires: 2 });
+            Cookies.set('token', action.payload.token, { expires: 2 });
         },
-        /**
-         * Réinitialise l'état de l'authentification.
-         *
-         * @param {Object} state - L'état actuel.
-         */
+
         clearAuth: (state) => {
             state.token = null;
             state.user = null;
             state.error = null;
-            // Cookies.remove('token');
+            Cookies.remove('token');
         },
     },
-    /**
-     * Des reducers supplémentaires pour gérer le résultat de la requête de connexion.
-     */
+
     extraReducers: (builder) => {
         builder
             .addCase(login.fulfilled, (state, action) => {
