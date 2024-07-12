@@ -19,7 +19,7 @@ function Login() {
         };
         dispatch(login(credentials)).then((action) => {
             if (action.meta.requestStatus === 'fulfilled' && rememberMe) {
-                Cookies.set('token', action.payload.token, { expires: 7 }); // Cookie expire au bout de 7 jours
+                Cookies.set('token', action.payload.token, { expires: 2 });
             }
         });
     };
